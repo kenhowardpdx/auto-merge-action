@@ -1,11 +1,13 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: "Auto Merge"
+description: "Enables auto-merge."
+author: "Ken Howard <ken@kenhoward.dev>"
 inputs:
-  milliseconds: # change this
+  enable:
+    required: false
+    default: true
+  token:
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    description: "a token with 'repo' privilege"
 runs:
-  using: 'node16'
+  using: 'node12'
   main: 'dist/index.js'
