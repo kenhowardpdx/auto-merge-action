@@ -1,6 +1,9 @@
-import {run} from './main'
-import {expect, test, jest} from '@jest/globals'
 import {debug, getInput, setFailed} from '@actions/core'
+import {expect, jest, test} from '@jest/globals'
+import {run} from './main'
+
+const getInputMock = jest.fn<string, []>()
+
 jest.mock('@actions/core', () => ({
   debug: jest.fn(),
   getInput: jest.fn(),
@@ -8,7 +11,7 @@ jest.mock('@actions/core', () => ({
 }))
 
 test('enable is false', async () => {
-  ;(getInput as any).mockReturnValue('test-token')
+  ;(getInput as typeof getInputMock).mockReturnValue('test-token')
   expect.assertions(1)
 
   run()
@@ -17,7 +20,7 @@ test('enable is false', async () => {
 })
 
 test('token missing', async () => {
-  ;(getInput as any).mockReturnValue('')
+  ;(getInput as typeof getInputMock).mockReturnValue('')
   expect.assertions(1)
 
   run()
