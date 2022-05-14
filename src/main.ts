@@ -1,16 +1,17 @@
 import * as core from '@actions/core'
-import {wait} from './wait'
 
-async function run(): Promise<void> {
+export async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds')
-    core.debug(`Waiting ${ms} milliseconds ...`) // debug is only output if you set the secret `ACTIONS_STEP_DEBUG` to true
+    const enable = Boolean(core.getInput('enable') === 'true')
+    const token = core.getInput('token')
 
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
+    if (!token) {
+      throw new Error("required field 'token' missing or empty")
+    }
 
-    core.setOutput('time', new Date().toTimeString())
+    if (!enable) {
+      core.debug("enable evaluated to 'false', skipping")
+    }
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
   }
