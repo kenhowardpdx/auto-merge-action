@@ -1,0 +1,11 @@
+name: Enable Auto Merge
+on: pull_request
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./
+        with:
+          enable: ${{ github.actor == 'kenhowardpdx' }}
+          token: #${{ secrets.GITHUB_TOKEN }}
