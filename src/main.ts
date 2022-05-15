@@ -11,7 +11,8 @@ export async function run(): Promise<void> {
 
     if (!['MERGE', 'SQUASH', 'REBASE'].includes(mergeMethod)) {
       throw new Error(
-        `required field 'merge_method' has incorrect value of ${mergeMethod}\n - must be one of MERGE, SQUASH, or REBASE`
+        `required field 'merge_method' has incorrect value of '${mergeMethod}'` +
+          ` - must be one of MERGE, SQUASH, or REBASE`
       )
     }
 

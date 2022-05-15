@@ -11,5 +11,5 @@ jobs:
       - uses: ./
         with:
           enable: ${{ github.actor == 'kenhowardpdx' }}
-          merge_method: foo
+          merge_method: SQUASH
           token: ${{ secrets.GITHUB_TOKEN }}

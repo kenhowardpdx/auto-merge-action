@@ -77,6 +77,10 @@ function run() {
             const enable = Boolean((0, core_1.getInput)('enable') === 'true');
             const token = (0, core_1.getInput)('token');
             const mergeMethod = (0, core_1.getInput)('merge_method');
+            if (!['MERGE', 'SQUASH', 'REBASE'].includes(mergeMethod)) {
+                throw new Error(`required field 'merge_method' has incorrect value of '${mergeMethod}'` +
+                    ` - must be one of MERGE, SQUASH, or REBASE`);
+            }
             if (!token) {
                 throw new Error("required field 'token' missing or empty");
             }
