@@ -86,12 +86,14 @@ function run() {
             }
             if (!enable) {
                 (0, core_1.debug)("enable evaluated to 'false', skipping");
+                return;
             }
             const client = (0, github_1.getOctokit)(token);
             const { payload } = github_1.context;
             (0, core_1.debug)('making request to GitHub');
             const data = yield (0, auto_merge_1.enableAutoMerge)(payload, mergeMethod, client);
             (0, core_1.debug)(`GitHub response:\n${JSON.stringify(data, null, 2)}`);
+            (0, core_1.info)('auto-merge enabled');
         }
         catch (error) {
             if (error instanceof Error)
