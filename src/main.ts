@@ -9,6 +9,12 @@ export async function run(): Promise<void> {
     const token = getInput('token')
     const mergeMethod = getInput('merge_method') as MergeMethod
 
+    if (!['MERGE', 'SQUASH', 'REBASE'].includes(mergeMethod)) {
+      throw new Error(
+        `required field 'merge_method' has incorrect value of ${mergeMethod}\n - must be one of MERGE, SQUASH, or REBASE`
+      )
+    }
+
     if (!token) {
       throw new Error("required field 'token' missing or empty")
     }
