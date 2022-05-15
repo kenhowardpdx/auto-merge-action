@@ -18,7 +18,7 @@ export async function run(): Promise<void> {
     const client = getOctokit(token)
     const {payload} = context
     debug('making request to GitHub')
-    const data = enableAutoMerge(
+    const data = await enableAutoMerge(
       payload as PullRequestEvent,
       MergeMethod.MERGE,
       client
