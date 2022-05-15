@@ -1,6 +1,6 @@
 import {MergeMethod, enableAutoMerge} from './auto_merge'
 import {context, getOctokit} from '@actions/github'
-import {debug, getInput, setFailed} from '@actions/core'
+import {debug, getInput, info, setFailed} from '@actions/core'
 import type {PullRequestEvent} from '@octokit/webhooks-types'
 
 export async function run(): Promise<void> {
@@ -22,6 +22,7 @@ export async function run(): Promise<void> {
 
     if (!enable) {
       debug("enable evaluated to 'false', skipping")
+      return
     }
     const client = getOctokit(token)
     const {payload} = context
@@ -32,6 +33,7 @@ export async function run(): Promise<void> {
       client
     )
     debug(`GitHub response:\n${JSON.stringify(data, null, 2)}`)
+    info('auto-merge enabled')
   } catch (error) {
     if (error instanceof Error) setFailed(error.message)
   }
