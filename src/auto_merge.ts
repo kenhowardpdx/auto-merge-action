@@ -30,7 +30,7 @@ export async function enableAutoMerge(
   mergeMethod: MergeMethod,
   client: Client
 ): Promise<AutoMergeResponse> {
-  return client.graphql(
+  return await client.graphql(
     `
       mutation(
         $pullRequestId: ID!,
