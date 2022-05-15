@@ -25,7 +25,7 @@ var MergeMethod;
 })(MergeMethod = exports.MergeMethod || (exports.MergeMethod = {}));
 function enableAutoMerge({ pull_request: { node_id: pullRequestId } }, mergeMethod, client) {
     return __awaiter(this, void 0, void 0, function* () {
-        return client.graphql(`
+        return yield client.graphql(`
       mutation(
         $pullRequestId: ID!,
         $mergeMethod: PullRequestMergeMethod!
@@ -91,7 +91,7 @@ function run() {
             const client = (0, github_1.getOctokit)(token);
             const { payload } = github_1.context;
             (0, core_1.debug)('making request to GitHub');
-            const data = (0, auto_merge_1.enableAutoMerge)(payload, auto_merge_1.MergeMethod.MERGE, client);
+            const data = yield (0, auto_merge_1.enableAutoMerge)(payload, auto_merge_1.MergeMethod.MERGE, client);
             (0, core_1.debug)(`GitHub response:\n${JSON.stringify(data, null, 2)}`);
         }
         catch (error) {
