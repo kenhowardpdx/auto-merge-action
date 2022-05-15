@@ -16,7 +16,9 @@
     "i18n-text/no-en": "off",
     "eslint-comments/no-use": "off",
     "import/no-namespace": "off",
+    "no-shadow": "off",
     "no-unused-vars": "off",
+    "@typescript-eslint/no-shadow": "error",
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/explicit-member-accessibility": [
       "error",
