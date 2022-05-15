@@ -16,13 +16,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.enableAutoMerge = exports.MergeMethod = void 0;
-var MergeMethod;
-(function (MergeMethod) {
-    MergeMethod["MERGE"] = "MERGE";
-    MergeMethod["SQUASH"] = "SQUASH";
-    MergeMethod["REBASE"] = "REBASE";
-})(MergeMethod = exports.MergeMethod || (exports.MergeMethod = {}));
+exports.enableAutoMerge = void 0;
 function enableAutoMerge({ pull_request: { node_id: pullRequestId } }, mergeMethod, client) {
     return __awaiter(this, void 0, void 0, function* () {
         return yield client.graphql(`
@@ -82,6 +76,7 @@ function run() {
         try {
             const enable = Boolean((0, core_1.getInput)('enable') === 'true');
             const token = (0, core_1.getInput)('token');
+            const mergeMethod = (0, core_1.getInput)('merge_method');
             if (!token) {
                 throw new Error("required field 'token' missing or empty");
             }
@@ -91,7 +86,7 @@ function run() {
             const client = (0, github_1.getOctokit)(token);
             const { payload } = github_1.context;
             (0, core_1.debug)('making request to GitHub');
-            const data = yield (0, auto_merge_1.enableAutoMerge)(payload, auto_merge_1.MergeMethod.MERGE, client);
+            const data = yield (0, auto_merge_1.enableAutoMerge)(payload, mergeMethod, client);
             (0, core_1.debug)(`GitHub response:\n${JSON.stringify(data, null, 2)}`);
         }
         catch (error) {

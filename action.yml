@@ -8,6 +8,15 @@ inputs:
   token:
     required: true
     description: "a token with 'repo' privilege"
+  merge_method:
+    type: choice
+    required: true
+    description: "MERGE, SQUASH, or REBASE"
+    options:
+      - MERGE
+      - SQUASH
+      - REBASE
+    default: MERGE
 runs:
   using: 'node12'
   main: 'dist/index.js'

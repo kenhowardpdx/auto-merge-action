@@ -19,11 +19,7 @@ interface Client {
   graphql: typeof graphql
 }
 
-export enum MergeMethod {
-  MERGE = 'MERGE',
-  SQUASH = 'SQUASH',
-  REBASE = 'REBASE'
-}
+export type MergeMethod = 'MERGE' | 'SQUASH' | 'REBASE'
 
 export async function enableAutoMerge(
   {pull_request: {node_id: pullRequestId}}: PullRequestEvent,

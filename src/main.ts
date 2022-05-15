@@ -7,6 +7,7 @@ export async function run(): Promise<void> {
   try {
     const enable = Boolean(getInput('enable') === 'true')
     const token = getInput('token')
+    const mergeMethod = getInput('merge_method') as MergeMethod
 
     if (!token) {
       throw new Error("required field 'token' missing or empty")
@@ -20,7 +21,7 @@ export async function run(): Promise<void> {
     debug('making request to GitHub')
     const data = await enableAutoMerge(
       payload as PullRequestEvent,
-      MergeMethod.MERGE,
+      mergeMethod,
       client
     )
     debug(`GitHub response:\n${JSON.stringify(data, null, 2)}`)
