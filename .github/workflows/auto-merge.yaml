@@ -8,6 +8,6 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ./
         with:
-          enable: ${{ github.actor == 'kenhowardpdx' }}
+          enable: ${{ github.actor == 'kenhowardpdx' || github.actor == 'dependabot' }}
           merge_method: SQUASH
           token: ${{ secrets.AUTO_MERGE_TOKEN }}
