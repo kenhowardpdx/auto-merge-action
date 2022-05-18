@@ -46,7 +46,7 @@ jobs:
       - name: Create PR with dist
         uses: peter-evans/create-pull-request@v3
         with:
-          token: ${{ secrets.ACTIONS_BOT_TOKEN }}
+          token: ${{ secrets.AUTO_MERGE_TOKEN }}
           commit-message: Build dist
           author: "kenhowardpdx[bot] <bot@github.kenhoward.dev>"
           title: "chore: build dist"
