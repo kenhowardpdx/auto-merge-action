@@ -46,7 +46,7 @@ jobs:
       - name: Create PR with dist
         uses: peter-evans/create-pull-request@v4
         with:
-          token: ${{ secrets.AUTO_MERGE_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: Build dist
           author: "kenhowardpdx[bot] <bot@github.kenhoward.dev>"
           title: "chore: build dist"
@@ -92,7 +92,7 @@ jobs:
       - id: release-pr
         uses: google-github-actions/release-please-action@v3
         with:
-          token: ${{ secrets.AUTO_MERGE_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           release-type: node
           fork: true
           package-name: ${{env.ACTION_NAME}}
