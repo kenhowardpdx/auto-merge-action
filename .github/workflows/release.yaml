@@ -22,7 +22,7 @@ jobs:
           # get current commit hash
           CURRENT_HASH=$(git rev-parse HEAD)
           # get last commit hash of last build dist
-          LAST_BUILD_HASH=$(git log --author=google-github-actions-bot -1 --pretty=format:"%H")
+          LAST_BUILD_HASH=$(git log --author=kenhowardpdx[bot] -1 --pretty=format:"%H")
           DIFF=""
           # build and commit dist if diff
           git config --global user.name "kenhowardpdx[bot]"
