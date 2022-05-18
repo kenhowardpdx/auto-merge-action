@@ -92,7 +92,7 @@ jobs:
       - id: release-pr
         uses: google-github-actions/release-please-action@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.AUTO_MERGE_TOKEN }}
           release-type: node
           fork: true
           package-name: ${{env.ACTION_NAME}}
