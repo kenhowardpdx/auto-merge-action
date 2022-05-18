@@ -71,7 +71,7 @@ jobs:
         run: |
           git config user.name kenhowardpdx[bot]
           git config user.email 105736529+kenhowardbot@users.noreply.github.com
-          git remote add gh-token "https://${{ secrets.GITHUB_TOKEN}}@github.com/kenhowardpdx/auto-merge-action.git"
+          git remote add gh-token "https://${{ secrets.GITHUB_TOKEN }}@github.com/kenhowardpdx/${ACTION_NAME}.git"
           git tag -d v${{ steps.release.outputs.major }} || true
           git tag -d v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }} || true
           git push origin :v${{ steps.release.outputs.major }} || true
