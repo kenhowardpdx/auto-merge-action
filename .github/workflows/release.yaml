@@ -7,7 +7,6 @@ env:
   ACTION_NAME: auto-merge-action
 
 jobs:
-  build:
   build: # make sure build/ci work properly
     runs-on: ubuntu-latest
     steps:
