@@ -1,11 +1,11 @@
-import {debug, getInput, setFailed} from '@actions/core'
+import {info, getInput, setFailed} from '@actions/core'
 import {expect, jest, test} from '@jest/globals'
 import {run} from './main'
 
 const getInputMock = jest.fn<string, [string]>()
 
 jest.mock('@actions/core', () => ({
-  debug: jest.fn(),
+  info: jest.fn(),
   getInput: jest.fn(),
   setFailed: jest.fn()
 }))
@@ -25,7 +25,7 @@ test('enable is false', async () => {
 
   run()
 
-  expect(debug).toHaveBeenCalledWith(expect.stringContaining('skipping'))
+  expect(info).toHaveBeenCalledWith(expect.stringContaining('skipping'))
 })
 
 test('token missing', async () => {
