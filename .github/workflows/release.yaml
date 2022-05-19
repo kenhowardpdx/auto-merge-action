@@ -26,7 +26,7 @@ jobs:
           DIFF=""
           # build and commit dist if diff
           git config --global user.name "kenhowardpdx[bot]"
-          git config user.email 'bot@github.kenhoward.dev'
+          git config --global user.email 105736529+kenhowardbot@users.noreply.github.com
           git add dist/
           git diff-index --quiet HEAD || git commit -m "chore: build dist ${ACTION_NAME}"
           # if last commit hash of last build dist was found, get logs of commits in btw for PR body
@@ -46,7 +46,7 @@ jobs:
       - name: Create PR with dist
         uses: peter-evans/create-pull-request@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.AUTO_MERGE_TOKEN }}
           commit-message: Build dist
           author: "kenhowardpdx[bot] <bot@github.kenhoward.dev>"
           title: "chore: build dist"
