@@ -64,7 +64,7 @@ jobs:
       - uses: google-github-actions/release-please-action@v3
         id: release
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.AUTO_MERGE_TOKEN }}
           release-type: node
           package-name: ${{env.ACTION_NAME}}
           command: github-release
