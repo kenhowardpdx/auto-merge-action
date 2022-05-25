@@ -19,6 +19,7 @@ jobs:
       - name: commit
         run: |-
           set -e
+          git log -20 --oneline
 
           # get current commit hash
           CURRENT_HASH=$(git rev-parse HEAD)
