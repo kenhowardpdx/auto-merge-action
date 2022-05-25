@@ -85,7 +85,7 @@ function run() {
                 throw new Error("required field 'token' missing or empty");
             }
             if (!enable) {
-                (0, core_1.debug)("enable evaluated to 'false', skipping");
+                (0, core_1.debug)("'enable' evaluated to 'false', skipping");
                 return;
             }
             const client = (0, github_1.getOctokit)(token);
