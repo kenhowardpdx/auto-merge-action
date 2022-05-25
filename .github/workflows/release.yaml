@@ -33,7 +33,7 @@ jobs:
   auto-merge-action-release:
     needs:
       - build
-    runs-on: ubuntu-latests
+    runs-on: ubuntu-latest
     steps:
       - uses: google-github-actions/release-please-action@v3
         id: release
@@ -60,6 +60,7 @@ jobs:
     needs:
       - build
       - auto-merge-action-release
+    runs-on: ubuntu-latest
     steps:
       - id: release-pr
         uses: google-github-actions/release-please-action@v3
