@@ -25,7 +25,6 @@ jobs:
           token: ${{ secrets.AUTO_MERGE_TOKEN }}
           push-to-fork: kenhowardbot/auto-merge-action
           branch: create-pull-request/dist
-          branch-suffix: short-commit-hash
           delete-branch: true
           commit-message: Build dist
           title: "chore: build dist"
