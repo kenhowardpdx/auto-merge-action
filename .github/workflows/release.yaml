@@ -5,7 +5,7 @@ on:
        - main
 
 jobs:
-  release:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -16,6 +16,7 @@ jobs:
       - run: npm ci
       - run: |
           npm run build
+          npm run package
           echo "::set-output name=build_created=$(if [[ $(git diff --name-only | wc -l | xargs) -eq 1 ]]; then echo 'true'; else echo 'false'; fi)"
         id: build
       - run: npm test
@@ -29,10 +30,41 @@ jobs:
           commit-message: Build dist
           title: "chore: build dist"
         if: ${{ steps.build.outputs.build_created }}
+  auto-merge-action-release:
+    needs:
+      - build
+    runs-on: ubuntu-latests
+    steps:
       - uses: google-github-actions/release-please-action@v3
-        if: ${{ !always() }}
         id: release
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.AUTO_MERGE_TOKEN }}
           release-type: node
           package-name: auto-merge-action
+          command: github-release
+      - uses: actions/checkout@v3
+      - run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git remote add gh-token "https://${{ secrets.GITHUB_TOKEN }}@github.com/kenhowardpdx/auto-merge-action.git"
+          git tag -d v${{ steps.release.outputs.major }} || true
+          git tag -d v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }} || true
+          git push origin :v${{ steps.release.outputs.major }} || true
+          git push origin :v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }} || true
+          git tag -a v${{ steps.release.outputs.major }} -m "Release v${{ steps.release.outputs.major }}"
+          git tag -a v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }} -m "Release v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}"
+          git push origin v${{ steps.release.outputs.major }}
+          git push origin v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}
+        if: ${{ steps.release.outputs.release_created }}
+  release-pr:
+    needs:
+      - build
+      - auto-merge-action-release
+    steps:
+      - id: release-pr
+        uses: google-github-actions/release-please-action@v3
+        with:
+          token: ${{ secrets.AUTO_MERGE_TOKEN }}
+          release-type: node
+          package-name: auto-merge-action
+          command: release-pr
