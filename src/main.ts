@@ -21,7 +21,7 @@ export async function run(): Promise<void> {
     }
 
     if (!enable) {
-      info("'enable' evaluated to 'false', skipping")
+      debug("'enable' evaluated to 'false', skipping")
       return
     }
     const client = getOctokit(token)
