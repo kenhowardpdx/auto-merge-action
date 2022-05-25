@@ -11,6 +11,6 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ./
         with:
-          enable: ${{ github.actor == 'kenhowardpdx' || github.actor == 'kenhowardbot' || github.actor == 'dependabot[bot]' }}
+          enable: ${{ github.actor == 'kenhowardpdx' || github.actor == 'dependabot[bot]' }}
           merge_method: SQUASH
           token: ${{ secrets.AUTO_MERGE_TOKEN }}
