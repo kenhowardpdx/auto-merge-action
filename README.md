@@ -4,7 +4,7 @@
 
 # Auto Merge Action
 
-Automatically set the `auto-merge` programmatically using
+Automatically set `auto-merge` on pull requests programmatically using
 [GitHub Action Expressions][github-expressions].
 
 ## Benefits
@@ -21,14 +21,13 @@ requests.
 1. [Enable auto-merge][github-auto-merge]
 1. [Create a branch protection rule][github-branch-protection]
 1. [Create a required status check][github-required-check]
-  - At least one required check must be added to fully enable GitHub's
-    auto-merge feature. (this action can be your required check)
+   - At least one required check must be added to fully enable GitHub's
+      auto-merge feature. (this action can be your required check)
 1. Add `.github/workflows/auto-merge.yaml` to your repository.
 
 ## Example Workflow
 
 ```yaml
-
 name: Enable Auto Merge
 on:
   pull_request_target:
@@ -39,12 +38,8 @@ jobs:
   auto-merge:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
       - uses: kenhowardpdx/auto-merge-action@v1
-        with:
-          enable: ${{ github.actor == 'dependabot[bot]' }}
-          merge_method: SQUASH
-          token: ${{ secrets.AUTO_MERGE_TOKEN }}
+        if: ${{ github.actor == 'dependabot[bot]' }}
 ```
 
 **NOTE:** The auto-generated `$GITHUB_TOKEN` will not work in most cases if you
@@ -52,14 +47,13 @@ expect workflows to be triggered once the merge occurs. It's preferred you
 generate a [personal access token][github-personal-access-token] and add it to
 your [repository secrets][github-actions-secrets]. In addition, if you enable
 auto-merge for dependabot, you will need to add the same secret key (preferably
-a different value) to [dependabot secrets][dependabot-secrets].
+a different value) to [dependabot secrets][github-dependabot-secrets].
 
 ## Inputs
 
-- `enable`: An expression to determine if auto-merge should be enabled.
 - `merge_method`: MERGE, SQUASH, or REBASE. Default: MERGE.
   [PullRequestMergeMethod][github-graphql-pull-request-merge-method]
-- `token`: A token with repo write permissions. Default: $GITHUB_TOKEN.
+- `token`: A token with repo privileges. Default: $GITHUB_TOKEN.
 
 ## GitHub Events
 

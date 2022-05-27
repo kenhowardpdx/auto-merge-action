@@ -5,7 +5,6 @@ import type {PullRequestEvent} from '@octokit/webhooks-types'
 
 export async function run(): Promise<void> {
   try {
-    const enable = Boolean(getInput('enable') === 'true')
     const token = getInput('token')
     const mergeMethod = getInput('merge_method') as MergeMethod
 
@@ -20,10 +19,6 @@ export async function run(): Promise<void> {
       throw new Error("required field 'token' missing or empty")
     }
 
-    if (!enable) {
-      debug("'enable' evaluated to 'false', skipping")
-      return
-    }
     const client = getOctokit(token)
     const {payload} = context
     debug('making request to GitHub')

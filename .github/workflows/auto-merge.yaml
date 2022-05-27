@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ./
         with:
-          enable: |-
-            ${{ (github.actor == 'kenhowardpdx' || github.actor == 'dependabot[bot]') || (github.event.pull_request.title == 'chore: build dist' && github.actor == 'kenhowardbot') }}
           merge_method: SQUASH
           token: ${{ secrets.AUTO_MERGE_TOKEN }}
+        if: |-
+          ${{ (github.actor == 'kenhowardpdx' || github.actor == 'dependabot[bot]') || (github.event.pull_request.title == 'chore: build dist' && github.actor == 'kenhowardbot') }}
