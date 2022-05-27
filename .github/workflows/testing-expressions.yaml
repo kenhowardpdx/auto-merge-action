@@ -1,0 +1,43 @@
+name: Testing Expressions
+on:
+  pull_request_target:
+    branches:
+      - main
+  push:
+
+jobs:
+  testing-expressions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - if: |-
+          ${{ github.actor == 'kenhowardpdx' }}
+        run: |
+          echo "github.actor == 'kenhowardpdx'"
+      - if: |-
+          ${{ github.event_name == 'push' }}
+        run: |
+          echo "github.event_name == 'push'"
+      - if: |-
+          ${{ github.event_name == 'pull_request' }}
+        run: |
+          echo "github.event_name == 'pull_request'"
+      - if: |-
+          ${{ github.event.pull_request.title == 'test: expressions' }}
+        run: |
+          echo "github.event.pull_request.title == 'test: expressions'"
+      - if: |-
+          ${{ github.event.pull_request.title == 'test: expressions' && github.actor == 'kenhowardpdx' }}
+        run: |
+          echo "github.event.pull_request.title == 'test: expressions' && github.actor == 'kenhowardpdx'"
+      - if: |-
+          ${{ github.event.pull_request.title == 'test: expressions' || github.actor == 'kenhowardpdx' }}
+        run: |
+          echo "github.event.pull_request.title == 'test: expressions' || github.actor == 'kenhowardpdx'"
+      - if: |-
+          ${{ (github.event_name == 'push' && github.actor == 'kenhowardpdx') || (github.event_name == 'pull_request' && github.actor == 'kenhowardpdx') }}
+        run: |
+          echo "complex expression"
+      - if: always()
+        run: |
+          echo '${{ toJSON(github) }}'
