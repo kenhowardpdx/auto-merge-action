@@ -1,6 +1,6 @@
 {
   "name": "auto-merge-action",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "private": true,
   "description": "A GitHub Action to automatically merge Pull Requests when all checks pass.",
   "main": "lib/main.js",
