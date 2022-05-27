@@ -8,6 +8,7 @@ inputs:
   token:
     required: true
     description: "a token with 'repo' privilege"
+    default: ${{ github.token }}
   merge_method:
     type: choice
     required: true
