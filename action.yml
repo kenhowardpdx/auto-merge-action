@@ -2,9 +2,6 @@ name: "Auto Merge"
 description: "Enables auto-merge."
 author: "Ken Howard <ken@kenhoward.dev>"
 inputs:
-  enable:
-    required: false
-    default: true
   token:
     required: true
     description: "a token with 'repo' privilege"
