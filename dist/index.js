@@ -74,7 +74,6 @@ const core_1 = __nccwpck_require__(2186);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const enable = Boolean((0, core_1.getInput)('enable') === 'true');
             const token = (0, core_1.getInput)('token');
             const mergeMethod = (0, core_1.getInput)('merge_method');
             if (!['MERGE', 'SQUASH', 'REBASE'].includes(mergeMethod)) {
@@ -83,10 +82,6 @@ function run() {
             }
             if (!token) {
                 throw new Error("required field 'token' missing or empty");
-            }
-            if (!enable) {
-                (0, core_1.debug)("'enable' evaluated to 'false', skipping");
-                return;
             }
             const client = (0, github_1.getOctokit)(token);
             const { payload } = github_1.context;
