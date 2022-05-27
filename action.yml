@@ -1,6 +1,9 @@
 name: "Simple Auto Merge"
 description: "Enables auto-merge."
 author: "Ken Howard <ken@kenhoward.dev>"
+branding:
+  icon: "git-merge"
+  color: "yellow"
 inputs:
   token:
     required: true
