@@ -1,4 +1,4 @@
-name: "Auto Merge"
+name: "Simple Auto Merge"
 description: "Enables auto-merge."
 author: "Ken Howard <ken@kenhoward.dev>"
 inputs:
