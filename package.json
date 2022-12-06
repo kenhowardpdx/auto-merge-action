@@ -31,7 +31,7 @@
   "devDependencies": {
     "@octokit/graphql": "^5.0.4",
     "@octokit/webhooks-types": "^6.7.0",
-    "@types/node": "^18.11.10",
+    "@types/node": "^18.11.11",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
     "@vercel/ncc": "^0.34.0",
