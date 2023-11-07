@@ -32,7 +32,7 @@
     "@octokit/graphql": "^5.0.6",
     "@octokit/webhooks-types": "^7.3.0",
     "@types/node": "^20.6.2",
-    "@typescript-eslint/eslint-plugin": "^5.61.0",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^5.62.0",
     "@vercel/ncc": "^0.38.0",
     "eslint": "^8.49.0",
