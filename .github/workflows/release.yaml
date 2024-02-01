@@ -20,7 +20,7 @@ jobs:
           echo "::set-output name=build_created::$(if [[ $(git diff --name-only | wc -l | xargs) -eq 1 ]]; then echo 'true'; else echo 'false'; fi)"
         id: build
       - run: npm test
-      - uses: peter-evans/create-pull-request@v5
+      - uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.AUTO_MERGE_TOKEN }}
           push-to-fork: kenhowardbot/auto-merge-action
