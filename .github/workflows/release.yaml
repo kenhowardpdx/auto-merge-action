@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: 16
       - run: npm install npm@latest -g
@@ -20,7 +20,7 @@ jobs:
           echo "::set-output name=build_created::$(if [[ $(git diff --name-only | wc -l | xargs) -eq 1 ]]; then echo 'true'; else echo 'false'; fi)"
         id: build
       - run: npm test
-      - uses: peter-evans/create-pull-request@v5
+      - uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.AUTO_MERGE_TOKEN }}
           push-to-fork: kenhowardbot/auto-merge-action
@@ -34,7 +34,7 @@ jobs:
       - build
     runs-on: ubuntu-latest
     steps:
-      - uses: google-github-actions/release-please-action@v3
+      - uses: google-github-actions/release-please-action@v4
         id: release
         with:
           token: ${{ secrets.AUTO_MERGE_TOKEN }}
@@ -62,7 +62,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: release-pr
-        uses: google-github-actions/release-please-action@v3
+        uses: google-github-actions/release-please-action@v4
         with:
           token: ${{ secrets.AUTO_MERGE_TOKEN }}
           release-type: node
