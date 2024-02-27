@@ -1,5 +1,7 @@
 import type {PullRequestEvent} from '@octokit/webhooks-types'
-import type {graphql} from '@octokit/graphql'
+import type {getOctokit} from '@actions/github'
+
+type Client = ReturnType<typeof getOctokit>
 
 interface AutoMergeResponse {
   clientMutationId: null | string
@@ -13,10 +15,6 @@ interface AutoMergeResponse {
       }
     }
   }
-}
-
-interface Client {
-  graphql: typeof graphql
 }
 
 export type MergeMethod = 'MERGE' | 'SQUASH' | 'REBASE'

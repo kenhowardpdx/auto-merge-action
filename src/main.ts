@@ -1,4 +1,5 @@
-import {MergeMethod, enableAutoMerge} from './auto_merge'
+// eslint-disable-next-line import/no-unresolved
+import {MergeMethod, enableAutoMerge} from './auto_merge.js'
 import {context, getOctokit} from '@actions/github'
 import {debug, getInput, info, setFailed} from '@actions/core'
 import type {PullRequestEvent} from '@octokit/webhooks-types'
