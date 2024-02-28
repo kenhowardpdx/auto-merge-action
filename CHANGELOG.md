@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/kenhowardpdx/auto-merge-action/compare/v1.0.0...v1.1.0) (2024-02-28)
+
+
+### Miscellaneous Chores
+
+* release 1.0.0 ([59edba6](https://github.com/kenhowardpdx/auto-merge-action/commit/59edba6261f62b5d12b45e6e9c486de265f1c388))
+
 ## 1.0.0 (2023-04-28)
 
 
