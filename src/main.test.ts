@@ -2,8 +2,6 @@ import {getInput, setFailed} from '@actions/core'
 import {expect, jest, test} from '@jest/globals'
 import {run} from './main'
 
-const getInputMock = jest.fn<string, [string]>()
-
 jest.mock('@actions/core', () => ({
   info: jest.fn(),
   getInput: jest.fn(),
@@ -11,7 +9,7 @@ jest.mock('@actions/core', () => ({
 }))
 
 test('token missing', async () => {
-  ;(getInput as typeof getInputMock).mockImplementation(
+  ;(getInput as ReturnType<typeof jest.fn>).mockImplementation(
     (key: string): string => {
       const values: {[key: string]: string} = {
         enable: 'false', // TODO: mock the github client
@@ -32,7 +30,7 @@ test('token missing', async () => {
 })
 
 test('invalid merge method', async () => {
-  ;(getInput as typeof getInputMock).mockImplementation(
+  ;(getInput as ReturnType<typeof jest.fn>).mockImplementation(
     (key: string): string => {
       const values: {[key: string]: string} = {
         enable: 'false', // TODO: mock the github client
