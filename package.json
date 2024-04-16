@@ -29,7 +29,7 @@
     "@actions/github": "^6.0.0"
   },
   "devDependencies": {
-    "@octokit/graphql": "^8.1.0",
+    "@octokit/graphql": "^8.1.1",
     "@octokit/webhooks-types": "^7.5.0",
     "@types/node": "^20.12.7",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
