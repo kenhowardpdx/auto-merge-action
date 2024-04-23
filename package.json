@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@octokit/graphql": "^8.1.1",
-    "@octokit/webhooks-types": "^7.5.0",
+    "@octokit/webhooks-types": "^7.5.1",
     "@types/node": "^20.12.7",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
