@@ -7,7 +7,7 @@
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.enableAutoMerge = void 0;
+exports.enableAutoMerge = enableAutoMerge;
 async function enableAutoMerge({ pull_request: { node_id: pullRequestId } }, mergeMethod, client) {
     return await client.graphql(`
       mutation(
@@ -36,7 +36,6 @@ async function enableAutoMerge({ pull_request: { node_id: pullRequestId } }, mer
         mergeMethod
     });
 }
-exports.enableAutoMerge = enableAutoMerge;
 
 
 /***/ }),
@@ -30904,7 +30903,7 @@ var __webpack_exports__ = {};
 var exports = __webpack_exports__;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.run = void 0;
+exports.run = run;
 // eslint-disable-next-line import/no-unresolved
 const auto_merge_js_1 = __nccwpck_require__(1491);
 const github_1 = __nccwpck_require__(5438);
@@ -30932,7 +30931,6 @@ async function run() {
             (0, core_1.setFailed)(error.message);
     }
 }
-exports.run = run;
 run();
 
 })();
